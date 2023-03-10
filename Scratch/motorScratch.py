@@ -37,4 +37,4 @@ while True:
 
     GPIO.output(out_1_pin, GPIO.LOW)
     GPIO.output(out_2_pin, GPIO.LOW)
-
+    
