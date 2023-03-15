@@ -1,39 +1,18 @@
-# Based on: https://www.raspberrypi.org/forums/viewtopic.php?t=242928\.
-#
-# Software to drive 4 wire stepper motor using a TB6600 Driver
-# PRi - RPi 3B
-#
-# Route 3.3 VDC to the controller "+" input for each: ENA, PUL, and DIR
-#
-# Connect GPIO pins as shown below) to the "-" input for each: ENA, PUL, and DIR
-#
-#
-from time import sleep
-import RPi.GPIO as GPIO
-#
-PUL = 17  # Stepper Drive Pulses
-DIR = 27  # Controller Direction Bit (High for Controller default / LOW to Force a Direction Change).
-ENA = 22  # Controller Enable Bit (High to Enable / LOW to Disable).
-# DIRI = 14  # Status Indicator LED - Direction
-# ENAI = 15  # Status indicator LED - Controller Enable
-#
-# NOTE: Leave DIR and ENA disconnected, and the controller WILL drive the motor in Default direction if PUL is applied.
-# 
-GPIO.setmode(GPIO.BCM)
-# GPIO.setmode(GPIO.BOARD) # Do NOT use GPIO.BOARD mode. Here for comparison only. 
-#
-GPIO.setup(PUL, GPIO.OUT)
-GPIO.setup(DIR, GPIO.OUT)
-GPIO.setup(ENA, GPIO.OUT)
-# GPIO.setup(DIRI, GPIO.OUT)
-# GPIO.setup(ENAI, GPIO.OUT)
-#
-print('PUL = GPIO 17 - RPi 3B-Pin #11')
-print('DIR = GPIO 27 - RPi 3B-Pin #13')
-print('ENA = GPIO 22 - RPi 3B-Pin #15')
-# print('ENAI = GPIO 14 - RPi 3B-Pin #8')
-# print('DIRI = GPIO 15 - RPi 3B-Pin #10')
 
+from time import sleep
+import RPi.GPIO as gpio
+
+DIR = 20
+STEP = 21
+CW =1
+CCW =0
+
+gpio.setmode(gpio.BCM)
+gpio.setup(DIR, gpio.OUT)
+gpio.setup(STEP, gpio.OUT)
+gpio.output(DIR,CW)
+
+<<<<<<< HEAD
 #
 print('Initialization Completed')
 #
@@ -105,3 +84,30 @@ while cyclecount < cycles:
 GPIO.cleanup()
 print('Cycling Completed')
 #
+=======
+
+# Main body of code
+try:
+    while True:
+        sleep(1)
+        gpio.output(DIR,CW)
+        for x in range(400):
+            gpio.output(STEP,gpio.HIGH)
+            sleep(.0100)
+            gpio.output(STEP,gpio.LOW)
+            sleep(.0100)
+        
+        sleep(1)
+        gpio.output(DIR,CCW)
+        for x in range(400):
+            gpio.output(STEP,gpio.HIGH)
+            sleep(.0010)
+            gpio.output(STEP,gpio.LOW)
+            sleep(.0010)
+            
+        
+        
+except KeyboardInterrupt: # If there is a KeyboardInterrupt (when you press ctrl+c), exit the program and cleanup
+    print("Cleaning up!")
+    gpio.cleanup()
+>>>>>>> 84a55ec61950b818440a2b5d62b444e19da19f46
