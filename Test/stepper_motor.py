@@ -28,9 +28,9 @@ try:
         gpio.output(DIR,CCW)
         for x in range(400):
             gpio.output(STEP,gpio.HIGH)
-            sleep(.010)
+            sleep(.0010)
             gpio.output(STEP,gpio.LOW)
-            sleep(.010)
+            sleep(.0010)
             
         
 except KeyboardInterrupt: # If there is a KeyboardInterrupt (when you press ctrl+c), exit the program and cleanup
