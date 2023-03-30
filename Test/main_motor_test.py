@@ -23,14 +23,13 @@ try:
         for duty in range(0,101,1):
             pi_pwm.ChangeDutyCycle(duty) #provide duty cycle in the range 0-100
             sleep(0.01) 
-        pi_pwm.ChangeDutyCycle(0) #breaking
-        sleep(5)
-
         gpio.output(DIR,CCW)
         for duty in range(0,101,1):
             pi_pwm.ChangeDutyCycle(duty)
             sleep(0.01)
+        pi_pwm.ChangeDutyCycle(0) 
         sleep(5)
+
 
               
         
