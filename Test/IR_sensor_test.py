@@ -10,9 +10,9 @@ gpio.setup(IR, gpio.IN)
 try:
     while(True):
         if gpio.input(IR):
-            print("pin 16 is high")
+            print("ball")
         else:
-            print("pin 16 is low")
+            print("no ball")
         sleep(0.5)
 
 except KeyboardInterrupt: # If there is a KeyboardInterrupt (when you press ctrl+c), exit the program and cleanup

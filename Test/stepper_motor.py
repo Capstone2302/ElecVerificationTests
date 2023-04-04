@@ -18,19 +18,18 @@ try:
     while True:
         sleep(1)
         gpio.output(DIR,CCW)
-        for x in range(500):
+        for x in range(300): #2300
             gpio.output(STEP,gpio.HIGH)
-            sleep(.00100)
+            sleep(.000500)
             gpio.output(STEP,gpio.LOW)
-            sleep(.00100)
-        
-        sleep(1)
-        gpio.output(DIR,CW)
-        for x in range(400):
+            sleep(.000500)
+
+        gpio.output(DIR,CW) #2300
+        for x in range(300):
             gpio.output(STEP,gpio.HIGH)
-            sleep(.010)
+            sleep(.000300)
             gpio.output(STEP,gpio.LOW)
-            sleep(.010)
+            sleep(.000300)
             
         
 except KeyboardInterrupt: # If there is a KeyboardInterrupt (when you press ctrl+c), exit the program and cleanup
