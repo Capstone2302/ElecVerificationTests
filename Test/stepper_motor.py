@@ -2,8 +2,8 @@
 from time import sleep
 import RPi.GPIO as gpio
 
-DIR = 20
-STEP = 21
+DIR = 21
+STEP = 20
 CW =1
 CCW =0
 
@@ -23,20 +23,19 @@ try:
             sleep(.000500)
             gpio.output(STEP,gpio.LOW)
             sleep(.000500)
-        for x in range(300): #2300
+        for x in range(280): #2300
             gpio.output(STEP,gpio.HIGH)
             sleep(.00100)
             gpio.output(STEP,gpio.LOW)
             sleep(.00100)    
-        sleep(0.2)
+        sleep(0.4)
         gpio.output(DIR,CW) #2300
         for x in range(2325):
             gpio.output(STEP,gpio.HIGH)
             sleep(.000300)
             gpio.output(STEP,gpio.LOW)
             sleep(.000300)
-            
-        
+
 except KeyboardInterrupt: # If there is a KeyboardInterrupt (when you press ctrl+c), exit the program and cleanup
     print("Cleaning up!")
     gpio.cleanup()
